@@ -1,4 +1,4 @@
-\{ 
+{ 
         "tabs": {
             "risk_level": "Medium",
             "description": "Allows the extension to access browser tabs and read browsing activity.",
