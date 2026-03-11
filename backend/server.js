@@ -1,5 +1,5 @@
 const express = require("express");
-<<<<<<< HEAD
+HEAD
 const cors = require("cors");
 
 const analyzeRoute = require("./routes/analyze");
@@ -15,7 +15,6 @@ const PORT = 5000;
 
 app.listen(PORT, () => {
     console.log("Server running on port", PORT);
-=======
 const fs = require("fs");
 const app = express();
 
@@ -27,5 +26,5 @@ app.get("/", (req, res) => {
 
 app.listen(3000, () => {
     console.log("Server running on port 3000");
->>>>>>> 910d20b07843c781f38c2e5a42004c2efdb81b01
+910d20b07843c781f38c2e5a42004c2efdb81b01
 });
