@@ -1,0 +1,26 @@
+{
+  "name": "browser-extension-privacy-analyzer",
+  "version": "1.0.0",
+  "description": "Hackathon project – Browser Extension Privacy Analyzer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kanchi2006/browser-extension-privacy-analyzer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kanchi2006/browser-extension-privacy-analyzer/issues"
+  },
+  "homepage": "https://github.com/Kanchi2006/browser-extension-privacy-analyzer#readme",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "cros": "^1.1.0",
+    "express": "^5.2.1",
+    "multer": "^2.1.1"
+  }
+}

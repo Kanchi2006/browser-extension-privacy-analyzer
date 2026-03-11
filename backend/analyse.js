@@ -1,11 +1,15 @@
-const express = require("express");
-const router = express.Router();
-const multer = require("multer");
+const riskEngine = require("./riskEngine");
 
-const analyzeController = require("../controllers/analyzerController");
+function analyzeExtension(manifest) {
 
-const upload = multer({ storage: multer.memoryStorage() });
+    const permissions = manifest.permissions || [];
 
-router.post("/", upload.single("manifest"), analyzeController.analyzeManifest);
+    const result = riskEngine.calculateRisk(permissions);
 
-module.exports = router;
+    return {
+        permissions: permissions,
+        riskScore: result.score
+    };
+}
+
+module.exports = analyzeExtension;

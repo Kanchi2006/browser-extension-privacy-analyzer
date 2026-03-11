@@ -1,6 +1,5 @@
 const fs = require("fs");
 
-// Load permission database
 const permissionDB = JSON.parse(
   fs.readFileSync("permissions_db.json", "utf8")
 );
@@ -20,8 +19,8 @@ function analyzePermissions(permissions) {
 
       report.push({
         permission: permission,
-        risk: data.risk,
-        reason: data.reason,
+        risk: data.risk_level,
+        reason: data.description,
         mitigation: data.mitigation
       });
 
@@ -38,14 +37,10 @@ function analyzePermissions(permissions) {
 
   });
 
-  // Determine overall risk level
   let riskLevel = "Low";
 
-  if (totalScore > 10) {
-    riskLevel = "High";
-  } else if (totalScore > 5) {
-    riskLevel = "Medium";
-  }
+  if (totalScore > 10) riskLevel = "High";
+  else if (totalScore > 5) riskLevel = "Medium";
 
   return {
     totalRiskScore: totalScore,

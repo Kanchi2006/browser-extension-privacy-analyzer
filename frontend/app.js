@@ -1,33 +1,100 @@
-function analyze(){
+async function analyzeManifest() {
 
-let data = {
-permissions:["tabs","cookies","storage"],
-risk_score:7,
-warnings:[
-"tabs can track browsing activity",
-"cookies can access session data"
-]
-};
+let fileInput = document.getElementById("manifestFile");
 
-let permList = document.getElementById("permissions");
-permList.innerHTML="";
+if(!fileInput.files.length){
+    alert("Please upload manifest.json");
+    return;
+}
+
+let file = fileInput.files[0];
+let text = await file.text();
+let manifest = JSON.parse(text);
+
+let permissions = manifest.permissions || [];
+
+const response = await fetch("http://localhost:5000/analyze",{
+    method:"POST",
+    headers:{
+        "Content-Type":"application/json"
+    },
+    body:JSON.stringify({
+        permissions:permissions
+    })
+});
+
+const data = await response.json();
+
+/* Permissions */
+
+const permissionsList = document.getElementById("permissionsList");
+permissionsList.innerHTML="";
 
 data.permissions.forEach(p=>{
-let li=document.createElement("li");
-li.innerText=p;
-permList.appendChild(li);
+    let li=document.createElement("li");
+    li.className="list-group-item";
+    li.innerText=p;
+    permissionsList.appendChild(li);
 });
 
-document.getElementById("risk").innerText =
-"Risk Score: "+data.risk_score+"/10";
+/* Risk Score */
 
-let warnList=document.getElementById("warnings");
-warnList.innerHTML="";
+let riskBar = document.getElementById("riskBar");
+
+// limit score to 10
+let score = Math.min(data.risk_score, 10);
+
+// set width
+riskBar.style.width = score * 10 + "%";
+
+// display score
+riskBar.innerText = score + "/10";
+
+// change color based on score
+if(score <= 3){
+    riskBar.className = "progress-bar bg-success";   // Green
+}
+else if(score <= 7){
+    riskBar.className = "progress-bar bg-warning";   // Yellow
+}
+else{
+    riskBar.className = "progress-bar bg-danger";    // Red
+}
+
+const warningsList=document.getElementById("warningsList");
+warningsList.innerHTML="";
 
 data.warnings.forEach(w=>{
-let li=document.createElement("li");
-li.innerText=w;
-warnList.appendChild(li);
+    let li=document.createElement("li");
+    li.className="list-group-item text-danger";
+    li.innerText=w;
+    warningsList.appendChild(li);
 });
+
+}
+
+function downloadReport(){
+
+const { jsPDF } = window.jspdf;
+
+let doc = new jsPDF();
+
+let permissions = document.getElementById("permissionsList").innerText;
+let warnings = document.getElementById("warningsList").innerText;
+let score = document.getElementById("riskBar").innerText;
+
+doc.setFontSize(18);
+doc.text("Browser Extension Security Report",20,20);
+
+doc.setFontSize(12);
+doc.text("Risk Score: " + score,20,40);
+
+doc.text("Permissions:",20,60);
+doc.text(permissions,20,70);
+
+doc.text("Warnings:",20,110);
+doc.text(warnings,20,120);
+
+doc.save("extension-security-report.pdf");
 
 }
