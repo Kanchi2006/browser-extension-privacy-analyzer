@@ -1,5 +1,4 @@
-{ <<
-    << << < HEAD
+{
         "tabs": {
             "risk_level": "Medium",
             "description": "Allows the extension to access browser tabs and read browsing activity.",
@@ -58,10 +57,8 @@
             "risk_level": "Low",
             "description": "Allows the extension to display notifications to the user.",
             "mitigation": "Check if notifications are necessary for extension functionality."
-        } ===
-        === =
+        } 
         "tabs": { "risk": "Medium", "score": 3, "reason": "Access open tabs" },
         "cookies": { "risk": "High", "score": 5, "reason": "Access session cookies" },
-        "history": { "risk": "High", "score": 5, "reason": "Tracks browsing history" } >>>
-        >>> > 910 d20b07843c781f38c2e5a42004c2efdb81b01
+        "history": { "risk": "High", "score": 5, "reason": "Tracks browsing history" }
 }
