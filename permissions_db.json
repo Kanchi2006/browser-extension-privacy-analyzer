@@ -1,0 +1,5 @@
+{
+"tabs":{"risk":"Medium","score":3,"reason":"Access open tabs"},
+"cookies":{"risk":"High","score":5,"reason":"Access session cookies"},
+"history":{"risk":"High","score":5,"reason":"Tracks browsing history"}
+}
