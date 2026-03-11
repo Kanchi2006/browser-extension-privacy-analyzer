@@ -1,0 +1,61 @@
+{
+    "tabs": {
+        "risk_level": "Medium",
+        "description": "Allows the extension to access browser tabs and read browsing activity.",
+        "mitigation": "Grant only if the extension needs to interact with tabs."
+    },
+
+    "history": {
+        "risk_level": "High",
+        "description": "Allows access to the user's browsing history.",
+        "mitigation": "Avoid installing extensions that request this unless absolutely necessary."
+    },
+
+    "cookies": {
+        "risk_level": "High",
+        "description": "Allows access to cookies which may contain session and login information.",
+        "mitigation": "Extensions should avoid accessing cookies unless required for authentication."
+    },
+
+    "storage": {
+        "risk_level": "Low",
+        "description": "Allows the extension to store data locally in the browser.",
+        "mitigation": "Ensure sensitive data is encrypted before storage."
+    },
+
+    "webRequest": {
+        "risk_level": "Critical",
+        "description": "Allows interception and modification of network requests.",
+        "mitigation": "Use only trusted extensions with this permission."
+    },
+
+    "activeTab": {
+        "risk_level": "Low",
+        "description": "Allows temporary access to the currently active tab when the user interacts with the extension.",
+        "mitigation": "Generally safe but should still be limited."
+    },
+
+    "downloads": {
+        "risk_level": "Medium",
+        "description": "Allows the extension to manage and download files.",
+        "mitigation": "Ensure downloads are from trusted sources."
+    },
+
+    "clipboardRead": {
+        "risk_level": "High",
+        "description": "Allows reading data from the clipboard which may contain sensitive information.",
+        "mitigation": "Avoid extensions requesting clipboard access unnecessarily."
+    },
+
+    "clipboardWrite": {
+        "risk_level": "Medium",
+        "description": "Allows writing data to the clipboard.",
+        "mitigation": "Use trusted extensions to prevent malicious clipboard modifications."
+    },
+
+    "notifications": {
+        "risk_level": "Low",
+        "description": "Allows the extension to display notifications to the user.",
+        "mitigation": "Check if notifications are necessary for extension functionality."
+    }
+}
