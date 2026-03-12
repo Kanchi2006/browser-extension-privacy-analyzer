@@ -72,7 +72,57 @@ data.warnings.forEach(w=>{
 });
 
 }
+function showRiskLevel(level){
 
+  const riskBox = document.getElementById("riskLevel");
+
+  if(level === "Dangerous"){
+      riskBox.innerHTML = "🔴 DANGEROUS EXTENSION";
+  }
+  else if(level === "Moderate"){
+      riskBox.innerHTML = "🟡 MODERATE RISK";
+  }
+  else{
+      riskBox.innerHTML = "🟢 SAFE EXTENSION";
+  }
+
+}
+// Function to display risk level
+function showRiskLevel(level){
+
+  const riskBox = document.getElementById("riskLevel");
+
+  if(level === "Dangerous"){
+      riskBox.innerHTML = "🔴 DANGEROUS EXTENSION";
+  }
+  else if(level === "Moderate"){
+      riskBox.innerHTML = "🟡 MODERATE RISK";
+  }
+  else{
+      riskBox.innerHTML = "🟢 SAFE EXTENSION";
+  }
+
+}
+
+
+// Function to create risk graph
+function createChart(high, medium, low){
+
+const ctx = document.getElementById("riskChart");
+
+new Chart(ctx, {
+  type: "bar",
+  data: {
+    labels: ["High Risk","Medium Risk","Low Risk"],
+    datasets: [{
+      label: "Permission Risk Levels",
+      data: [high, medium, low],
+      backgroundColor: ["red","orange","green"]
+    }]
+  }
+});
+
+}
 function downloadReport(){
 
 const { jsPDF } = window.jspdf;
