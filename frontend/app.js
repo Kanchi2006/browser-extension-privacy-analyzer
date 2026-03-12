@@ -13,7 +13,7 @@ let manifest = JSON.parse(text);
 
 let permissions = manifest.permissions || [];
 
-const response = await fetch("http://localhost:5000/analyze",{
+const response = await fetch("https://browser-extension-privacy-analyzer.onrender.com/analyze",{
     method:"POST",
     headers:{
         "Content-Type":"application/json"
